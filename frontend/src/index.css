@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 text-white bg-gray-900 overflow-x-hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  /* CSS variables for consistent theming */
+  :root {
+    --primary-accent: #00ecff;
+    --secondary-accent: theme('colors.secondary');
+    --tertiary-accent: theme('colors.tertiary');
+  }
+}
+
+@layer components {
+  .cyber-button {
+    @apply relative overflow-hidden border-2 border-secondary bg-transparent text-secondary transition-all duration-300;
+  }
+  
+  .cyber-button:hover {
+    @apply text-gray-900 bg-secondary shadow-lg shadow-secondary/50;
+  }
+  
+  .button-border {
+    @apply absolute block;
+  }
+  
+  .button-border:nth-child(1) {
+    @apply inset-x-0 top-0 h-[2px] bg-secondary;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-text-glitch {
+    animation: text-glitch 1s infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes text-glitch {
+  0%, 100% { 
+    text-shadow: 
+      0 0 5px var(--secondary-accent),
+      0 0 10px var(--secondary-accent); 
+  }
+  50% { 
+    text-shadow: 
+      0 0 5px var(--tertiary-accent),
+      0 0 10px var(--tertiary-accent); 
+  }
+}
+
+/* Optimized loader */
+.loader {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transform: scale(0.8); /* Better for responsive sizing */
+}
+
+.hexagon {
+  position: absolute;
+  width: 40px;
+  height: 23px;
+  background-color: var(--primary-accent);
+  animation: hexagonAnimation 2s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 11.5px solid var(--primary-accent);
+}
+
+.hexagon:after {
+  top: 100%;
+  border-top: 11.5px solid var(--primary-accent);
+}
+
+@keyframes hexagonAnimation {
+  0%, 100% { 
+    transform: translate(-50%, -50%) rotate(0deg); 
+    filter: drop-shadow(0 0 10px rgba(0, 236, 255, 0.7));
+  }
+  25% { 
+    transform: translate(-50%, -70%) rotate(90deg);
+  }
+  50% { 
+    transform: translate(-50%, -50%) rotate(180deg);
+    filter: drop-shadow(0 0 15px rgba(0, 236, 255, 1));
+  }
+  75% { 
+    transform: translate(-50%, -30%) rotate(270deg);
+  }
+}
