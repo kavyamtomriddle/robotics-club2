@@ -1,4 +1,3 @@
-// models/Message.js
 const mongoose = require('mongoose');
 
 const messageSchema = new mongoose.Schema({
@@ -9,4 +8,4 @@ const messageSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Message', messageSchema);
+module.exports = mongoose.model('Message', messageSchema); // capital M here is okay for schema name
